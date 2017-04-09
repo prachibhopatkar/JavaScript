@@ -31,6 +31,13 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
     }
     else{
         roundScore = 0;
+        //change active user
+        activePlayer===0 ? activePlayer=1 : activePlayer=0;
+        //change active player indicator
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        
+        
     }
     document.getElementById('current-'+activePlayer).textContent  =roundScore;
 });
