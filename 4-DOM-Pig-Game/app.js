@@ -10,7 +10,7 @@ GAME RULES:
 */
 var score, roundScore, activePlayer;
 score=0;
-roundScore=0;
+roundScore=0; //Tracks total scores for current player
 activePlayer = 0;
 
 document.getElementById('current-0').textContent = 0;
@@ -25,5 +25,15 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
     document.querySelector('.dice').src = 'dice-'+diceNumber+'.png';
     //Update the current score if the number on the dice is not 1
     
+    if(diceNumber>1){
+        // Add the dice Number to the curent scores
+        roundScore +=diceNumber;
+    }
+    else{
+        roundScore = 0;
+    }
+    document.getElementById('current-'+activePlayer).textContent  =roundScore;
+});
+document.quertSelector('.btn-hold').addEventListener('click',function(){
     
 });
