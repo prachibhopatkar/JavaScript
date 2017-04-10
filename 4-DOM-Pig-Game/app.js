@@ -9,7 +9,7 @@ GAME RULES:
 
 */
 var score, roundScore, activePlayer;
-score=0;
+scores=[0,0];
 roundScore=0; //Tracks total scores for current player
 activePlayer = 0;
 
@@ -17,6 +17,18 @@ document.getElementById('current-0').textContent = 0;
 document.getElementById('current-1').textContent = 0;
 document.getElementById('score-0').textContent = 0;
 document.getElementById('score-1').textContent = 0;
+
+function nextPlayer(){
+    //change active user
+        document.getElementById('current-0').textContent = 0;
+        document.getElementById('current-1').textContent = 0;
+        roundScore =0;
+        activePlayer===0 ? activePlayer=1 : activePlayer=0;
+        //change active player indicator
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+        
+}
 
 document.querySelector('.btn-roll').addEventListener('click',function(){
     //get Random Number
@@ -31,16 +43,18 @@ document.querySelector('.btn-roll').addEventListener('click',function(){
     }
     else{
         roundScore = 0;
-        //change active user
-        activePlayer===0 ? activePlayer=1 : activePlayer=0;
-        //change active player indicator
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-        
+        nextPlayer();
         
     }
     document.getElementById('current-'+activePlayer).textContent  =roundScore;
 });
-document.quertSelector('.btn-hold').addEventListener('click',function(){
+
+
+
+document.querySelector('.btn-hold').addEventListener('click',function(){
+    //alert(scores[activePlayer]);
+    scores[activePlayer] += roundScore;
+    document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
+    nextPlayer();
     
 });
