@@ -55,6 +55,19 @@ document.querySelector('.btn-hold').addEventListener('click',function(){
     //alert(scores[activePlayer]);
     scores[activePlayer] += roundScore;
     document.getElementById('score-'+activePlayer).textContent = scores[activePlayer];
-    nextPlayer();
+    //check Winner
+    if(scores[activePlayer]>=20){
+        document.getElementById('name-'+activePlayer).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.btn-roll').style.display = 'none';
+        document.querySelector('.btn-hold').style.display = 'none';
+        document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
+        document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
+        
+        
+    }else{
+         nextPlayer();
+    }
+   
     
 });
